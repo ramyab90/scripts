@@ -1,6 +1,6 @@
 from postgres_db import *
 
-# Execution Example
+# Script input
 file_path = "C:\\Users\\Hari\\ramya\\ContainerSolutions\\Scripts\\titanic.csv"
 table_name = 'titanic_user_details'
 dbname = 'titanic'
@@ -9,7 +9,30 @@ host = 'localhost'
 port = '5432'
 user = 'postgres'
 pwd = 'Admin@123'
+Name = 'Miss. Laina Heikkinen'
+Age = '10'
 
-#pg_create_table(file_path, table_name, dbname, host, port, user, pwd)
+user_query = "deleteRecord"
 
-#pg_load_table(file_path, table_name, dbname, host, port, user, pwd)
+if user_query == 'createTable':
+  print("Script will create the postgres table...")
+  pg_create_table(dbname, host, port, user, pwd)
+
+elif user_query == 'loadTable':
+  print("Script will load data to the postgres table...")
+  pg_load_table(file_path, table_name, dbname, host, port, user, pwd)
+
+elif user_query == 'readTable':
+  print("Script will read data from the postgres table...")
+  pg_read_table(dbname, host, port, user, pwd)
+
+elif user_query == 'updateTable':
+  print("Script will update data to the postgres table...")
+  pg_update_table(dbname, host, port, user, pwd, Name, Age)
+
+elif user_query == 'deleteRecord':
+  print("Script will delete data from the postgres table...")
+  pg_delete_table(dbname, host, port, user, pwd, Name)
+
+else:
+  print("Error: User provided an undefined input!")
